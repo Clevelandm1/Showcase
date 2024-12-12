@@ -2,6 +2,7 @@ import { P5CanvasInstance, ReactP5Wrapper } from "@p5-wrapper/react";
 import { Vector } from "p5";
 
 function sketch(p5: P5CanvasInstance) {
+  let canvas;
   class Entit {
     zeroVec: Vector = p5.createVector(0, 0);
     slowVec: Vector = p5.createVector(-0.01, -0.01);
@@ -55,11 +56,18 @@ function sketch(p5: P5CanvasInstance) {
 
   let tst = new Entit(200, 200, 150, 2);
 
-  p5.setup = () => p5.createCanvas(800, 800);
+  p5.windowResized = () => {
+    p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+  };
+
+  p5.setup = () => {
+    canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
+    canvas.position(0, 0);
+    canvas.style("z-index", "-1");
+  };
 
   p5.draw = () => {
-    p5.background(200);
-    p5.square(100, 100, 200);
+    p5.background(27, 27, 27);
     tst.update();
   };
 }
