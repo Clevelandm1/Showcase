@@ -1,8 +1,11 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import Drawer from "./Drawer";
 
-function MenuButton() {
+interface menuButtonProps {
+  toggle: () => void;
+}
+
+function MenuButton(props: menuButtonProps) {
   return (
     <>
       <motion.button
@@ -24,6 +27,7 @@ function MenuButton() {
           opacity: 1,
           transition: { duration: 0.05 },
         }}
+        onClick={props.toggle}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

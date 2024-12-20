@@ -28,14 +28,22 @@ function NavBar() {
     };
   }, [windowDimension]);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDrawer = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
-      <Drawer />
+      <Drawer isDrawerOpen={isOpen} toggle={toggleDrawer}>
+        <h2 className="bg-white">hellooooooooo</h2>
+        helooooooo
+      </Drawer>
       {windowDimension.winWidth < 1053 ? (
         <div className="flex justify-between sticky top-0 z-[2] p-[1%] pr-[1.5%] bg-neutral-800 shadow-black shadow-xl bg-opacity-20 backdrop-blur-sm ">
           <ShowcaseButton />
 
-          <MenuButton />
+          <MenuButton toggle={toggleDrawer} />
         </div>
       ) : (
         <div className="flex justify-between sticky top-0 z-[2] items-center p-[.7%] bg-neutral-800 shadow-black shadow-xl bg-opacity-20 backdrop-blur-sm">
